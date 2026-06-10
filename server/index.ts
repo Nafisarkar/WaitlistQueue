@@ -1,14 +1,15 @@
-import { Hono } from 'hono'
-import { cors } from 'hono/cors'
-const app = new Hono()
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import userRoute from "./routes/user.route";
 
-// Chaining routes ensures types flow correctly
-const routes = app.use(cors()).get('/', (c) => {
-  return c.json({
-    health:"ok"
-  })
-})
+const app = new Hono();
+app.use("*", cors());
 
-// Export the type of the entire app/routes chain
-export type AppType = typeof routes
-export default app
+const routes = app
+	.get("/", (c) => {
+		return c.json({ health: "ok" });
+	})
+	.route("/visitor", userRoute);
+
+export type AppType = typeof routes;
+export default app;

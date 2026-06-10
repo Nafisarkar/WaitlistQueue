@@ -1,0 +1,15 @@
+GET http://localhost:3000/
+
+
+###
+GET http://localhost:3000/visitor
+
+
+### Test Register (Maps to userRoute.post("/register"))
+POST http://localhost:3000/visitor/register
+Content-Type: application/json
+
+{
+    "date":"2026-06-10",
+    "email": "sarkarnafe@gmail.com"
+}
